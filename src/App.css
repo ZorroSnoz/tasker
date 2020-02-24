@@ -1,38 +1,283 @@
+body {
+  background-image: url(./image/myslitel-min.jpg);
+  background-size: cover;
+}
+
 .App {
-  text-align: center;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.add-board {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-color: #81c784;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.add-board img {
+  width: 25px;
+  height: 25px;
+}
+
+.add-board:hover {
+  background-color: #6fbf73;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.table-custom {
+  margin-top: 300px;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody img {
+  height: 20px;
+  margin: 0px;
+  cursor: pointer;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+tbody img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
+  margin-left: 15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.header-container h1 {
+  margin: 0px 15px 0px 0px;
+}
+
+.header-container p {
+  margin: 10px 0px 0px 0px;
+}
+
+.back-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  width: 50px;
+  background-color: darkgrey;
+  margin-right: 15px;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.back-button img {
+  height: 30px;
+}
+
+.back-button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.board-item {
+  margin-top: 30px;
+  padding: 10px 15px 15px 15px;
+}
+
+.board-item .board-item-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.board-item .board-item-header img {
+  height: 30px;
+  margin-top: 5px;
+  cursor: pointer;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.board-item .board-item-header img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.board-item p {
+  margin: 10px 0px 0px 0px;
+  cursor: pointer;
+}
+
+.task-item {
+  padding: 10px 15px 15px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 15px;
+}
+
+.task-item h6 {
+  margin-bottom: 10px;
+}
+
+.task-item div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.task-item div button {
+  margin: 0px 0px 0px 10px;
+}
+
+.modal-window-container {
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.vh100 {
+  height: 100vh;
+}
+
+.modal-close {
+  display: none;
+}
+
+.modal-padding {
+  padding: 10px 15px 15px 15px;
+}
+
+.input-container {
+  position: relative;
+}
+
+.errorInput {
+  border: solid 2px #ff6666;
+}
+
+.errorSpan {
   color: white;
+  position: absolute;
+  left: 0px;
+  top: -33px;
+  display: block;
+  padding: 5px;
+  background-color: #e64646;
+  white-space: nowrap;
 }
 
-.App-link {
-  color: #61dafb;
+.modal-add-board h6 {
+  font-size: 24px;
+  margin-bottom: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal-add-board .form-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
+.modal-add-board .form-header img {
+  height: 30px;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.modal-add-board .form-header img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.modal-add-board .form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-add-board .form-container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-add-board .form-container form input {
+  margin-bottom: 15px;
+}
+
+.modal-add-board .form-container form button {
+  width: 100px;
+}
+/*# sourceMappingURL=App.css.map */

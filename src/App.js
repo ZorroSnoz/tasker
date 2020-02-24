@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Home from './components/home-component/home';
+import Board from './components/board-component/board';
+import { changeToggleModalBoard, deleteBoard, setBoards } from './redux/app-reduser';
 
-function App() {
+function App({ appData, changeToggleModalBoard, deleteBoard, setBoards }) {
+
+  useEffect(() => {
+    setBoards()
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div class="container">
+        <Route path='/' exact render={() =>
+          <Home
+            deleteBoard={deleteBoard}
+            appData={appData}
+            changeToggleModalBoard={changeToggleModalBoard} />} />
+        <Route path='/board/' render={() => <Board />} />
+      </div>
+    </BrowserRouter>
   );
 }
 
-export default App;
+
+let mapStateToProps = (state) => {
+  return {
+    appData: state.appPage
+  }
+};
+
+export default connect(mapStateToProps, { changeToggleModalBoard, deleteBoard, setBoards })(App);
