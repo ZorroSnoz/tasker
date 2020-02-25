@@ -2,36 +2,27 @@ import React, {useEffect} from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Home from './components/home-component/home';
-import Board from './components/board-component/board';
-import { changeToggleModalBoard, deleteBoard, setBoards } from './redux/app-reduser';
+import {setBoards} from './redux/app-reduser';
+import HomeContainer from './components/home-component/home-container';
+import BoardContainer from './components/board-component/board-container';
 
-function App({ appData, changeToggleModalBoard, deleteBoard, setBoards }) {
+function App({setBoards}) {
 
   useEffect(() => {
+    console.log('Load data from localstorage...');
     setBoards()
-  }, []);
+  }, []); 
 
 
   return (
     <BrowserRouter>
       <div class="container">
-        <Route path='/' exact render={() =>
-          <Home
-            deleteBoard={deleteBoard}
-            appData={appData}
-            changeToggleModalBoard={changeToggleModalBoard} />} />
-        <Route path='/board/' render={() => <Board />} />
+        <Route path='/' exact render={() => <HomeContainer />} />
+        <Route path='/board/' render={() => <BoardContainer />} /> 
       </div>
     </BrowserRouter>
   );
 }
 
 
-let mapStateToProps = (state) => {
-  return {
-    appData: state.appPage
-  }
-};
-
-export default connect(mapStateToProps, { changeToggleModalBoard, deleteBoard, setBoards })(App);
+export default connect(null, {setBoards})(App);

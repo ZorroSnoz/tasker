@@ -42,10 +42,6 @@ body {
           transform: scale(1.05);
 }
 
-.table-custom {
-  margin-top: 300px;
-}
-
 tbody tr {
   cursor: pointer;
 }
@@ -115,6 +111,12 @@ tbody img:hover {
           transform: scale(1.1);
 }
 
+.table-custom {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
 .board-item {
   margin-top: 30px;
   padding: 10px 15px 15px 15px;
@@ -180,7 +182,7 @@ tbody img:hover {
   height: 100vh;
   width: 100%;
   z-index: 10;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -279,5 +281,11 @@ tbody img:hover {
 
 .modal-add-board .form-container form button {
   width: 100px;
+}
+
+.modal-add-board .form-container form textarea {
+  margin-bottom: 15px;
+  width: 320px;
+  height: 150px;
 }
 /*# sourceMappingURL=App.css.map */

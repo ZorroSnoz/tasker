@@ -4,11 +4,13 @@ import { Redirect } from 'react-router-dom';
 
 let HomeItem = ({ id, nameBoard, discription, deleteBoard }) => {
     const [click, setClick] = useState(0);
+    let clickInRow = () => setClick(1);
+    
     if (click === 0) {
         return (
-            <tr onClick={() => setClick(1)}>
-                <td scope="row">{nameBoard}</td>
-                <td>{discription}</td>
+            <tr >
+                <td onClick={clickInRow} scope="row">{nameBoard}</td>
+                <td onClick={clickInRow}>{discription}</td>
                 <td className='d-flex justify-content-center'><img onClick={() => deleteBoard(id)} src={deleteIcon} /></td>
             </tr>
         )

@@ -1,10 +1,15 @@
 import React from 'react';
+import closeIcon from '../../../image/close.svg';
 
-let ModalTaskWindow = () => {
-    return (<div className='modal-task-window bg-dark rounded'>
-        <h6 className='text-light'>refact change-ad-page</h6>
-        <p className='text-light'>quis nostrud exercitation ullamco laboris nisi ut aliquip ex .</p>
-        <p className='text-light'>ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+let ModalTaskWindow = ({ data }) => {
+    let { taskDiscription, taskName, closeWindow } = data;
+    return (<div className='modal-add-board modal-padding bg-dark rounded'>
+        <div className='form-header'>
+            <h6 className='text-light'>{taskName}</h6>
+            <p>{taskDiscription}</p>
+            <img onClick={() => { closeWindow() }} src={closeIcon} />
+        </div>
+
     </div>
     )
 };
