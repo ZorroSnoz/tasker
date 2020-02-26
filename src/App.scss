@@ -245,3 +245,14 @@ textarea {
     transform: scale(1.1);
   }
 }
+//// isDragging
+.is-draging {
+  opacity: 0.35;
+  transition: 0.25s;
+}
+.is-over {
+  .board-item {
+    background-color: darken(#343A40, 10%) !important;
+    transition: 0.25s;
+  }
+}

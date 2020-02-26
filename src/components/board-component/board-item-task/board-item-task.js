@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ModalWindowContainer from '../../modal-window-container/modal-window';
 import ModalTaskWindow from '../modal-task-window/modal-window';
+import { useDrag } from 'react-dnd';
+import { ItemTypes } from '../../../utils-dnd/utils';
 
 let BoardItemTask = ({
     taskName,
@@ -23,7 +25,19 @@ let BoardItemTask = ({
         };
         return '';
     };
-    return (<>
+
+    const [{ isDragging }, drag] = useDrag({
+        item: {
+            type: ItemTypes.TASK,
+            id: id,
+            idTargetBoardItem: idTargetBoardItem
+        },
+        collect: monitor => ({
+            isDragging: !!monitor.isDragging()
+        })
+
+    })
+    return (<div ref={drag} className={isDragging ? 'is-draging' : ''}>
         <div className={`task-item rounded bg-secondary ${doneToggle(done)}`}>
             <h6 className='text-light'>{taskName}</h6>
             <div>
@@ -36,7 +50,7 @@ let BoardItemTask = ({
             </div>
         </div>
         <ModalWindowContainer Component={ModalTaskWindow} toogle={toggle} data={{ taskDiscription, taskName, closeWindow }} />
-    </>
+    </div>
     )
 };
 

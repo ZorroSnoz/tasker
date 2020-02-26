@@ -27,6 +27,15 @@ let deepCopyState = (state) => {
     return newState;
 };
 
+let functionDuplicationKiller = (state, targetId) => {
+
+    let newState = deepCopyState(state);
+    let boardItems = newState.data[state.currentBoardIndex].dataBoard;
+    let boardItemIndex = takeIndexInArr(boardItems, targetId);
+    boardItems[boardItemIndex] = JSON.parse(JSON.stringify(state.data[state.currentBoardIndex].dataBoard[boardItemIndex]));
+
+    return {newState, boardItems, boardItemIndex}
+};
 
 const CHANGE_MODAL_WINDOW_NEW_BOARD = 'CHANGE_MODAL_WINDOW_NEW_BOARD';
 const CHANGE_MODAL_WINDOW_ADD_BOARD_ITEM = 'CHANGE_MODAL_WINDOW_ADD_BOARD_ITEM';
@@ -41,6 +50,7 @@ const SET_BOARTS_OF_LOCALSTORAGE = 'SET_BOARTS_OF_LOCALSTORAGE';
 const SET_BOARD_INDEX = 'SET_BOARD_INDEX';
 const SET_TARGET_BOARD_ITEM_ID = 'SET_TARGET_BOARD_ITEM_ID';
 const DONE_TASK = 'DONE_TASK';
+const MOVE_TASK = 'MOVE_TASK';
 
 let initialState = {
     data: [
@@ -155,11 +165,10 @@ const appReduser = (state = initialState, action) => {
             let newState = deepCopyState(state);
 
             let newBoardItem = {
-                idBoardItem: generatorId(),
+                id: generatorId(),
                 nameBoardItem: action.data.nameBoardItem,
                 boardItemTasks: []
             };
-
             let newBoardItems = [...state.data[state.currentBoardIndex].dataBoard];
 
             newBoardItems.push(newBoardItem);
@@ -184,13 +193,10 @@ const appReduser = (state = initialState, action) => {
             return newState;
         };
         case DELETE_TASK: {
-            let newState = deepCopyState(state);
-            let boardItems = newState.data[state.currentBoardIndex].dataBoard;
-            let boardItemIndex = takeIndexInArr(boardItems, action.idTargetBoardItem);
+            let {newState, boardItems, boardItemIndex} = functionDuplicationKiller(state, action.idTargetBoardItem);
 
-            boardItems[boardItemIndex] = JSON.parse(JSON.stringify(state.data[state.currentBoardIndex].dataBoard[boardItemIndex]));
             let newTasks = boardItems[boardItemIndex].boardItemTasks.filter(item => item.id != action.id);
-            
+
             boardItems[boardItemIndex].boardItemTasks = newTasks;
 
             return newState;
@@ -204,11 +210,8 @@ const appReduser = (state = initialState, action) => {
                 taskDiscription: action.data.discription
             }
 
-            let newState = deepCopyState(state);
-            let boardItems = newState.data[state.currentBoardIndex].dataBoard;
-            let boardItemIndex = takeIndexInArr(boardItems, state.targetBoardItemId);
-
-            boardItems[boardItemIndex] = JSON.parse(JSON.stringify(state.data[state.currentBoardIndex].dataBoard[boardItemIndex]));
+            let {newState, boardItems, boardItemIndex} = functionDuplicationKiller(state, state.targetBoardItemId);
+           
             boardItems[boardItemIndex].boardItemTasks.push(newTask);
 
             local.setItem(newState.data);
@@ -248,18 +251,36 @@ const appReduser = (state = initialState, action) => {
             };
         }
         case DONE_TASK: {
-            let newState = deepCopyState(state);
-            let boardItems = newState.data[state.currentBoardIndex].dataBoard;
-            let boardItemIndex = takeIndexInArr(boardItems, action.idTargetBoardItem);
 
-            boardItems[boardItemIndex] = JSON.parse(JSON.stringify(state.data[state.currentBoardIndex].dataBoard[boardItemIndex]));
-            let newTasks = boardItems[boardItemIndex].boardItemTasks.filter(item =>{
-                if(item.id === action.id) {
+            let {newState, boardItems, boardItemIndex} = functionDuplicationKiller(state, action.idTargetBoardItem)
+
+            let newTasks = boardItems[boardItemIndex].boardItemTasks.filter(item => {
+                if (item.id === action.id) {
                     item.done = action.toggle
-                } return item });
-            
+                } return item
+            });
+
             boardItems[boardItemIndex].boardItemTasks = newTasks;
 
+            return newState;
+        }
+        case MOVE_TASK: {
+
+            let {newState, boardItems, boardItemIndex} = functionDuplicationKiller(state, action.idTargetBoardItem)
+
+            let targetTask;
+            let newTasks = boardItems[boardItemIndex].boardItemTasks.filter(item => {
+                if (item.id === action.id) {
+                    targetTask = item;
+                } else {
+                    return item;
+                }
+            });
+            boardItems[boardItemIndex].boardItemTasks = newTasks;
+
+            let NewBoardItemIndex = takeIndexInArr(boardItems, action.IdNewTargetBoardItem);
+
+            boardItems[NewBoardItemIndex].boardItemTasks.push(targetTask);
             return newState;
         }
         default: {
@@ -283,6 +304,7 @@ export let setBoards = () => ({ type: SET_BOARTS_OF_LOCALSTORAGE });
 export let setBoardIndex = (id) => ({ type: SET_BOARD_INDEX, id });
 export let setTargetBoardItemId = (id) => ({ type: SET_TARGET_BOARD_ITEM_ID, id });
 export let doneTask = (id, idTargetBoardItem, toggle) => ({ type: DONE_TASK, id, idTargetBoardItem, toggle });
+export let moveTask = (id, idTargetBoardItem, IdNewTargetBoardItem) => ({ type: MOVE_TASK, id, idTargetBoardItem, IdNewTargetBoardItem });
 
 
 export default appReduser;

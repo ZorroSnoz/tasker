@@ -8,7 +8,8 @@ import {
     setTargetBoardItemId,
     deleteBoardItem,
     deleteTask,
-    doneTask } from '../../redux/app-reduser';
+    doneTask,
+    moveTask } from '../../redux/app-reduser';
 import Board from './board';
 
 let BoardContainer = ({
@@ -22,7 +23,8 @@ let BoardContainer = ({
      setTargetBoardItemId,
      deleteBoardItem,
      deleteTask,
-     doneTask
+     doneTask,
+     moveTask
      }) => {
 
     let thisBoardId = document.location.pathname.slice(7);
@@ -59,6 +61,7 @@ let BoardContainer = ({
              openModalAddTask={openModalAddTask}
              deleteTaskInBoardItem={deleteTaskInBoardItem}
              doneTask={doneTask}
+             moveTask={moveTask}
  />)
         nameBoard = boardData.nameBoard;
     }
@@ -91,4 +94,5 @@ export default connect(mapStateToProps, {
     setTargetBoardItemId, 
     deleteBoardItem,
     deleteTask,
-    doneTask })(BoardContainer);
+    doneTask,
+    moveTask })(BoardContainer);

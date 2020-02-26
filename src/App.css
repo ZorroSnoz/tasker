@@ -336,4 +336,16 @@ tbody img:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
+
+.is-draging {
+  opacity: 0.35;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.is-over .board-item {
+  background-color: #1d2124 !important;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
 /*# sourceMappingURL=App.css.map */
