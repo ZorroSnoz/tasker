@@ -8,18 +8,21 @@ let BoardItem = ({
     openModalAddTask, 
     id, 
     deleteBoardItem,
-    deleteTaskInBoardItem
+    deleteTaskInBoardItem,
+    doneTask
  }) => {
 
     let boardItemTasksArr = boardItemTasks.map(item => <BoardItemTask
         id={item.id}
         taskName={item.taskName}
+        done={item.done}
         taskDiscription={item.taskDiscription}
         idTargetBoardItem={id}
         deleteTaskInBoardItem={deleteTaskInBoardItem}
+        doneTask={doneTask}
  />)
     return (
-        <div className='col col-lg-4 col-sm-6 col-12'>
+        <div className='col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3'>
             <div className='board-item rounded shadow bg-dark'>
                 <div className='board-item-header'>
                     <h4 className='text-light'>{nameBoardItem}</h4>

@@ -3,12 +3,10 @@ import AddButton from '../add-button/button';
 import backIcon from '../../image/back.svg';
 import { NavLink } from 'react-router-dom';
 import ModalWindowContainer from '../modal-window-container/modal-window';
-import ModalTaskWindow from './modal-task-window/modal-window';
 import ModalAddBoardItemContainer from './modal-add-board-item/add-board-item-container';
 import ModalAddTaskContainer from './modal-add-task-window/add-task-window-container';
 
 let Board = ({ 
-    toogleTaskWindow, 
     boardItemsArr, 
     openModalAddBoardItem, 
     nameBoard, 

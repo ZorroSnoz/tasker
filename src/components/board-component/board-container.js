@@ -7,12 +7,12 @@ import {
     changeToggleModalAddTask, 
     setTargetBoardItemId,
     deleteBoardItem,
-    deleteTask } from '../../redux/app-reduser';
+    deleteTask,
+    doneTask } from '../../redux/app-reduser';
 import Board from './board';
 
 let BoardContainer = ({
      boardData, 
-     toogleTaskWindow, 
      setBoardIndex, 
      currentBoardId, 
      changeToggleModalAddBoardItem,
@@ -21,7 +21,8 @@ let BoardContainer = ({
      addNewTaskWindow,
      setTargetBoardItemId,
      deleteBoardItem,
-     deleteTask
+     deleteTask,
+     doneTask
      }) => {
 
     let thisBoardId = document.location.pathname.slice(7);
@@ -57,6 +58,7 @@ let BoardContainer = ({
              boardItemTasks={item.boardItemTasks}
              openModalAddTask={openModalAddTask}
              deleteTaskInBoardItem={deleteTaskInBoardItem}
+             doneTask={doneTask}
  />)
         nameBoard = boardData.nameBoard;
     }
@@ -65,7 +67,6 @@ let BoardContainer = ({
         <Board
             boardItemsArr={boardItemsArr}
             conditionForRender={conditionForRender}
-            toogleTaskWindow={toogleTaskWindow}
             nameBoard={nameBoard}
             openModalAddBoardItem={openModalAddBoardItem}
             addBoardItemWindow={addBoardItemWindow}
@@ -76,7 +77,6 @@ let BoardContainer = ({
 
 let mapStateToProps = (state) => {
     return {
-        toogleTaskWindow: state.appPage.toggleModalWindows.taskWindow,
         addNewTaskWindow: state.appPage.toggleModalWindows.addNewTaskWindow,
         addBoardItemWindow: state.appPage.toggleModalWindows.addBoardItemWindow,
         currentBoardId: state.appPage.currentBoardId,
@@ -90,4 +90,5 @@ export default connect(mapStateToProps, {
     changeToggleModalAddTask, 
     setTargetBoardItemId, 
     deleteBoardItem,
-    deleteTask })(BoardContainer);
+    deleteTask,
+    doneTask })(BoardContainer);

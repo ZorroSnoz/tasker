@@ -108,7 +108,12 @@ tbody {
     cursor: pointer;
   }
 }
-
+.done-task {
+  h6 {
+    text-decoration: line-through;
+    color: darken(white, 30%) !important;
+  }
+}
 .task-item {
   padding: 10px 15px 15px 15px;
   display: flex;
@@ -214,23 +219,29 @@ textarea {
   }
 }
 
-//// modal window add board item
-
-// .modal-add-board-item {
-//   h6 {
-//     font-size: 24px;
-//     margin-bottom: 15px;
-//   }
-//   form {
-//     display: flex;
-//     justify-content: center;
-//     flex-direction: column;
-//     align-items: center;
-//   }
-//   input {
-//     margin-bottom: 15px;
-//   }
-//   button {
-//     width: 100px;
-//   }
-// }
+//// task-window
+.task-window {
+  display: flex;
+  flex-direction: column;
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-container {
+    padding: 10px;
+  }
+  h6 {
+    font-size: 24px;
+  }
+  p{
+    margin: 0px;
+  }
+  img {
+    height: 30px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+  img:hover {
+    transform: scale(1.1);
+  }
+}

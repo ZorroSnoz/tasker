@@ -149,6 +149,11 @@ tbody img:hover {
   cursor: pointer;
 }
 
+.done-task h6 {
+  text-decoration: line-through;
+  color: #b3b3b3 !important;
+}
+
 .task-item {
   padding: 10px 15px 15px 15px;
   display: -webkit-box;
@@ -287,5 +292,48 @@ tbody img:hover {
   margin-bottom: 15px;
   width: 320px;
   height: 150px;
+}
+
+.task-window {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.task-window .form-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.task-window .form-container {
+  padding: 10px;
+}
+
+.task-window h6 {
+  font-size: 24px;
+}
+
+.task-window p {
+  margin: 0px;
+}
+
+.task-window img {
+  height: 30px;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.task-window img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 /*# sourceMappingURL=App.css.map */
