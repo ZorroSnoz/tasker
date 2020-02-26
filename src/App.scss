@@ -212,7 +212,8 @@ button {
 }
 textarea {
   margin-bottom: 15px;
-  width: 320px;
+  max-width: 300px;
+  min-width: 200px;
   height: 150px;
 }
     }
