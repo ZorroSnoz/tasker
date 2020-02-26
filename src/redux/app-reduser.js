@@ -265,6 +265,9 @@ const appReduser = (state = initialState, action) => {
             return newState;
         }
         case MOVE_TASK: {
+            if (action.idTargetBoardItem === action.IdNewTargetBoardItem) {
+                return state
+            }
 
             let {newState, boardItems, boardItemIndex} = functionDuplicationKiller(state, action.idTargetBoardItem)
 
