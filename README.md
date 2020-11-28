@@ -1,11 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Не великий таскер, клон Trello, написаний під себе для запису задач для проектів.
-Використовується localstorage.
+Not a big tasker, a clone of Trello, written for himself to record tasks for projects.
+Localstorage is used.
 
-Переглянути SPA можна тут - https://snozartyr.com/works/tasker
-
-технології
+Technology stack:
 - react
 - readux
 - react-dnd
@@ -13,5 +11,3 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - redux-form
 - react-router-dom
 - bootstrap
-
-FLUX архітектура, чистий редьюсер без мутацій стейта, валідація на формах, є елементи drag and drop, використовується сітка bootstrap.
